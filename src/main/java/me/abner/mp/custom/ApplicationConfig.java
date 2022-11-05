@@ -11,7 +11,7 @@ import java.util.Set;
 
 @LoginConfig(authMethod = "MP-JWT")
 @ApplicationScoped
-@DeclareRoles({  "USERX" ,"DEVELOPERX","appuserroleX"}) //
+@DeclareRoles({  "USERX" ,"DEVELOPERX","appuserroleX"}) //adsfasd
                                                         // Para funcionar as roles, tive que alterar dentro do
                                                         // keycloak: Client scopes -> Client scope details -> Mapper details
                                                         // (User Realm Role: Campo Token Claim Name, trocado os valores de realms_acess.roles para groups )
