@@ -1,0 +1,13 @@
+# Microprofile server properties
+server:
+  port: 8080
+  host: 0.0.0.0
+
+security:
+  providers:
+    - oidc:
+        client-id: "microprofile-jwt-client"
+        client-secret: "rYh07lLWUVVTIIjHKtjw8qdi3QIL6apq"
+        identity-uri: "http://localhost:8084/realms/MyMarketplace"
+#        frontend-uri: "http://my-service:8080"
+#        audience: "http://my-service"
