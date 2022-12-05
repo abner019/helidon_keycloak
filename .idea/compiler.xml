@@ -6,7 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="custom-mp" />
+        <module name="sso_keycloack" />
+        <module name="sso_keycloak" />
       </profile>
     </annotationProcessing>
   </component>

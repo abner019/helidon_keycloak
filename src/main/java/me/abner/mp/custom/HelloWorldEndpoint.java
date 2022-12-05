@@ -15,6 +15,7 @@ import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.SecurityContext;
+import me.abner.mp.custom.exception.CustomExceptionEntity;
 import org.eclipse.microprofile.jwt.Claim;
 
 import java.security.Principal;
@@ -28,8 +29,12 @@ import java.util.logging.Logger;
 public class HelloWorldEndpoint {
 
     @Inject
-    @Claim("roles")
-    private JsonArray roles;
+    @Claim("email")
+    private String gEmail;
+
+    @Inject
+    @Claim("preferred_username")
+    private String preferred_username;
 
     @Inject
     @Claim("realm_access")
@@ -51,7 +56,7 @@ public class HelloWorldEndpoint {
     @GET
     @Path("/hello")
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed({"USERX" ,"DEVELOPERX","appuserroleX"})
+    @RolesAllowed({"USER" ,"DEVELOPER","appuserrole"})
     public Response getDefaultMessage(@HeaderParam("Host") String host) {
         logger.info("Incoming from host " + host + " ! ");
         JsonObject retJ = JSON.createObjectBuilder()
@@ -80,7 +85,7 @@ public class HelloWorldEndpoint {
                 .build();
     }
 
-    @GET
+    /*@GET
     @Path("/jwtroles")
     @Produces(MediaType.APPLICATION_JSON)
     //@RolesAllowed({ "admin", "user" })
@@ -88,7 +93,7 @@ public class HelloWorldEndpoint {
         System.out.println("abner_bessi");
         System.out.println(realm_access);
         return roles.toString();
-    }
+    }*/
 
     @GET
     @Path("/getPrincipal")
@@ -98,5 +103,36 @@ public class HelloWorldEndpoint {
         Principal user = sec.getUserPrincipal();
         return user;
     }
+
+    @GET
+    @Path("/SecurityContext")
+    @Produces(MediaType.APPLICATION_JSON)
+    //@RolesAllowed({ "admin", "user" })
+    public SecurityContext getInfo(@Context SecurityContext sec) {
+        //Principal user = sec.getUserPrincipal();
+        return sec;
+    }
+
+    @GET
+    @Path("/globalInfo")
+    @Produces(MediaType.APPLICATION_JSON)
+    //@RolesAllowed({ "admin", "user" })
+    public String getInfoConcat(@Context SecurityContext sec) {
+
+        return "email:" + gEmail + " preferred_username:" + preferred_username;
+    }
+
+
+    @GET
+    @Path("/getCustomException")
+    @Produces(MediaType.APPLICATION_JSON)
+    //@RolesAllowed({ "admin", "user" })
+    public String getCustomException() throws CustomExceptionEntity {
+
+
+            throw new CustomExceptionEntity("SSMA_PERMISSIONS_GROUPS.MSG.GROUP_USED");
+
+    }
+
 
 }
