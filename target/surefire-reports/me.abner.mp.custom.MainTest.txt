@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: me.abner.mp.custom.MainTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.054 s <<< FAILURE! - in me.abner.mp.custom.MainTest
-me.abner.mp.custom.MainTest.testGreet  Time elapsed: 0.137 s  <<< ERROR!
-jakarta.ws.rs.NotFoundException: HTTP 404 Not Found
-	at me.abner.mp.custom.MainTest.testGreet(MainTest.java:29)
-

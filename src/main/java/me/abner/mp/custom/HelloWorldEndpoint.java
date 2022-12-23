@@ -40,6 +40,9 @@ public class HelloWorldEndpoint {
     @Claim("realm_access")
     private JsonObject realm_access;
 
+    @Inject
+    @Claim("domain")
+    private Long domain;
 
     private static final JsonBuilderFactory JSON = Json.createBuilderFactory(Collections.emptyMap());
     Logger logger = Logger.getLogger(this.getClass().getName());
@@ -118,8 +121,8 @@ public class HelloWorldEndpoint {
     @Produces(MediaType.APPLICATION_JSON)
     //@RolesAllowed({ "admin", "user" })
     public String getInfoConcat(@Context SecurityContext sec) {
-
-        return "email:" + gEmail + " preferred_username:" + preferred_username;
+        System.out.println(realm_access);
+        return "email:" + gEmail + " preferred_username:" + preferred_username +  " domain:" + domain ;
     }
 
 
